@@ -26,7 +26,7 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       backgroundColor: AppConst.primary,
       body: Center(
-        child: SpinKitDancingSquare(
+        child: SpinKitHourGlass(
           duration: const Duration(seconds: 3),
           size: 100,
           color: HexColor('#ffffff'),
