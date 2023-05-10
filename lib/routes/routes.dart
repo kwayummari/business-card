@@ -19,14 +19,17 @@ final Map<String, WidgetBuilder> routes = {
   RouteNames.profile: (context) => profile(),
   RouteNames.bottomNavigationBar: (context) => bottomNavigation(),
   RouteNames.navigation: (context) => navigation(),
-  RouteNames.myImagePage:(context) => MyImagePage(),
-  // RouteNames.buses: (context) {
-  //   final Map<String, dynamic>? args =
-  //       ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-  //   return buses(
-  //     destination: args?['destination'],
-  //     dire: args?['dire'],
-  //     route: args?['route'],
-  //   );
-  // },
+  RouteNames.myImagePage: (context) {
+    final Map<String, dynamic>? args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    return MyImagePage(
+      name: args?['name'],
+      job: args?['job'],
+      company: args?['company'],
+      phone: args?['phone'],
+      email: args?['email'],
+      website: args?['website'],
+      work: args?['work'],
+    );
+  },
 };

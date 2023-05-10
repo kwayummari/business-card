@@ -1,6 +1,5 @@
 import 'package:business_card/routes/route-names.dart';
 import 'package:business_card/src/provider/login-provider.dart';
-import 'package:business_card/src/service/business-service.dart';
 import 'package:business_card/src/utils/app_const.dart';
 import 'package:business_card/src/widgets/app_base_screen.dart';
 import 'package:business_card/src/widgets/app_button.dart';
@@ -28,7 +27,8 @@ class _dashboardState extends State<dashboard> {
   TextEditingController company = TextEditingController();
   TextEditingController phone = TextEditingController();
   TextEditingController email = TextEditingController();
-  TextEditingController url = TextEditingController();
+  TextEditingController website = TextEditingController();
+  TextEditingController work = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +80,13 @@ class _dashboardState extends State<dashboard> {
                 fillcolor: AppConst.primary,
                 label: 'Company Name',
                 obscure: false),
+                AppInputText(
+                textfieldcontroller: work,
+                ispassword: false,
+                isemail: false,
+                fillcolor: AppConst.primary,
+                label: 'Company Works',
+                obscure: false),
             AppInputText(
                 textfieldcontroller: phone,
                 ispassword: false,
@@ -95,11 +102,11 @@ class _dashboardState extends State<dashboard> {
                 label: 'Email Address',
                 obscure: false),
             AppInputText(
-                textfieldcontroller: url,
+                textfieldcontroller: website,
                 ispassword: false,
                 isemail: false,
                 fillcolor: AppConst.primary,
-                label: 'Website Url',
+                label: 'Website Url(https://example.com)',
                 obscure: false),
             SizedBox(
               height: 20,
@@ -112,7 +119,19 @@ class _dashboardState extends State<dashboard> {
                     width: 350,
                     height: 55,
                     child: AppButton(
-                      onPress: () => Navigator.pushNamed(context, RouteNames.myImagePage),
+                      onPress: () => Navigator.pushNamed(
+                        context,
+                        RouteNames.myImagePage,
+                        arguments: {
+                          'name': name.text.toString(),
+                          'job': job.text.toString(),
+                          'company': company.text.toString(),
+                          'phone': phone.text.toString(),
+                          'email': email.text.toString(),
+                          'website': website.text.toString(),
+                          'work': work.text.toString(),
+                        },
+                      ),
                       // BusinessService()
                       //     .Business(context, email.text, name.text),
                       label: 'Submit to generate card',
