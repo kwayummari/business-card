@@ -81,154 +81,185 @@ class _MyImagePageState extends State<MyImagePage> {
         ],
       ),
       child: Center(
-        child: RepaintBoundary(
-          key: globalKey,
-          child: Container(
-            decoration: BoxDecoration(
-              color: AppConst.black,
-              border: Border.all(
-                color: AppConst.white,
-                width: 2.0,
+        child: Column(
+          children: [
+            RepaintBoundary(
+              key: globalKey,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppConst.black,
+                  border: Border.all(
+                    color: AppConst.white,
+                    width: 2.0,
+                  ),
+                ),
+                width: 300,
+                height: 200,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: Container(
+                        height: 130,
+                        width: 120,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                        decoration: BoxDecoration(
+                          color: AppConst.primary,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(26),
+                              bottomLeft: Radius.circular(126),
+                              bottomRight: Radius.circular(0)),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 10,
+                      right: 10,
+                      child: QrImage(
+                        data: 'MECARD:N:${widget.website};TEL:${widget.phone};',
+                        version: QrVersions.auto,
+                        size: 80.0,
+                      ),
+                    ),
+                    Positioned(
+                      top: 20,
+                      left: 20,
+                      child: AppText(
+                        txt: widget.name,
+                        size: 15,
+                        color: AppConst.white,
+                        weight: FontWeight.bold,
+                      ),
+                    ),
+                    Positioned(
+                      top: 40,
+                      left: 20,
+                      child: AppText(
+                        txt: widget.job,
+                        size: 12,
+                        color: AppConst.white,
+                      ),
+                    ),
+                    Positioned(
+                      top: 60,
+                      left: 20,
+                      child: Container(
+                        width: 250,
+                        height: 40,
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 10,
+                              backgroundColor: AppConst.primary,
+                              child: Icon(
+                                Icons.phone,
+                                size: 10,
+                                color: AppConst.white,
+                              ),
+                            ),
+                            AppText(
+                              txt: widget.phone,
+                              size: 12,
+                              color: AppConst.white,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 90,
+                      left: 20,
+                      child: Container(
+                        width: 250,
+                        height: 40,
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 10,
+                              backgroundColor: AppConst.primary,
+                              child: Icon(
+                                Icons.mail,
+                                size: 10,
+                                color: AppConst.white,
+                              ),
+                            ),
+                            AppText(
+                              txt: widget.email,
+                              size: 12,
+                              color: AppConst.white,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 120,
+                      left: 20,
+                      child: Container(
+                        width: 250,
+                        height: 40,
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 10,
+                              backgroundColor: AppConst.primary,
+                              child: Icon(
+                                Icons.public,
+                                size: 10,
+                                color: AppConst.white,
+                              ),
+                            ),
+                            AppText(
+                              txt: widget.website,
+                              size: 12,
+                              color: AppConst.white,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 150,
+                      left: 20,
+                      child: Container(
+                        width: 250,
+                        height: 40,
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 10,
+                              backgroundColor: AppConst.primary,
+                              child: Icon(
+                                Icons.cases,
+                                size: 10,
+                                color: AppConst.white,
+                              ),
+                            ),
+                            AppText(
+                              txt: widget.work,
+                              size: 12,
+                              color: AppConst.white,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            width: 300,
-            height: 200,
-            child: Stack(
-              children: [
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    height: 130,
-                    width: 120,
-                    padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                    decoration: BoxDecoration(
-                      color: AppConst.primary,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(26),
-                          bottomLeft: Radius.circular(126),
-                          bottomRight: Radius.circular(0)),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 10,
-                  right: 10,
-                  child: QrImage(
-                    data: 'MECARD:N:${widget.website};TEL:${widget.phone};',
-                    version: QrVersions.auto,
-                    size: 80.0,
-                  ),
-                ),
-                Positioned(
-                  top: 20,
-                  left: 20,
-                  child: AppText(
-                    txt: widget.name,
-                    size: 15,
-                    color: AppConst.white,
-                    weight: FontWeight.bold,
-                  ),
-                ),
-                Positioned(
-                  top: 40,
-                  left: 20,
-                  child: AppText(
-                    txt: widget.job,
-                    size: 12,
-                    color: AppConst.white,
-                  ),
-                ),
-                Positioned(
-                  top: 60,
-                  left: 20,
-                  child: Container(
-                    width: 250,
-                    height: 40,
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 10,
-                          backgroundColor: AppConst.primary,
-                          child: Icon(
-                            Icons.phone,
-                            size: 10,
-                            color: AppConst.white,
-                          ),
-                        ),
-                        AppText(
-                          txt: widget.phone,
-                          size: 12,
-                          color: AppConst.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 90,
-                  left: 20,
-                  child: Container(
-                    width: 250,
-                    height: 40,
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 10,
-                          backgroundColor: AppConst.primary,
-                          child: Icon(
-                            Icons.mail,
-                            size: 10,
-                            color: AppConst.white,
-                          ),
-                        ),
-                        AppText(
-                          txt: widget.email,
-                          size: 12,
-                          color: AppConst.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 120,
-                  left: 20,
-                  child: Container(
-                    width: 250,
-                    height: 40,
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 10,
-                          backgroundColor: AppConst.primary,
-                          child: Icon(
-                            Icons.public,
-                            size: 10,
-                            color: AppConst.white,
-                          ),
-                        ),
-                        AppText(
-                          txt: widget.website,
-                          size: 12,
-                          color: AppConst.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 170,
-                  left: 20,
-                  child: AppText(
-                    txt: widget.work,
-                    size: 12,
-                    color: AppConst.white,
-                  ),
-                ),
-              ],
+            SizedBox(
+              height: 20,
             ),
-          ),
+            QrImage(
+              backgroundColor: AppConst.white,
+              data: 'MECARD:N:${widget.website};TEL:${widget.phone};',
+              version: QrVersions.auto,
+              size: 80.0,
+            ),
+          ],
         ),
       ),
     );

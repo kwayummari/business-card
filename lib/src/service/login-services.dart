@@ -20,22 +20,14 @@ class loginService {
       'password': password.toString(),
     };
     final response = await api.post(context, 'auth/login.php', data);
-    // "0"
 
     if (response != 'wrong') {
       Provider.of<MyProvider>(context, listen: false)
           .updateLoging(!myProvider.myLoging);
-      List<String> splitResponse = response.split("-");
-      String id = splitResponse[0]; // "1"
-      String role = splitResponse[1];
-      if (role == '0') {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('email', email);
-        await prefs.setString('id', id.toString());
-        await prefs.setString('role', role.toString());
         Navigator.pushNamedAndRemoveUntil(
-            context, RouteNames.bottomNavigationBar, (_) => false);
-      }
+            context, RouteNames.dashboard, (_) => false);
     } else {
       Provider.of<MyProvider>(context, listen: false)
           .updateLoging(!myProvider.myLoging);
