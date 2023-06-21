@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:business_card/src/utils/app_const.dart';
 import 'package:business_card/src/widgets/app_base_screen.dart';
+import 'package:business_card/src/widgets/app_button.dart';
 import 'package:business_card/src/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -63,6 +64,22 @@ class _MyImagePageState extends State<MyImagePage> {
           .showSnackBar(SnackBar(content: Text('Error sharing image')));
     }
   }
+
+  Future<void> _shareQr() async {
+  Uint8List? imageBytes = await _captureImage();
+  if (imageBytes != null) {
+    String imageName = '${widget.name} QR Code.png';
+    final tempDir = await getTemporaryDirectory();
+    final file = await new File('${tempDir.path}/$imageName').create();
+    await file.writeAsBytes(imageBytes);
+    await Share.shareFiles([file.path], text: 'Check out my QR code!');
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text('Error sharing QR code'),
+    ));
+  }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -253,11 +270,17 @@ class _MyImagePageState extends State<MyImagePage> {
             SizedBox(
               height: 20,
             ),
+            AppButton(
+                onPress: _shareQr,
+                label: 'Share Qr Code',
+                borderRadius: 5,
+                textColor: AppConst.black,
+                bcolor: AppConst.primary),
             QrImage(
               backgroundColor: AppConst.white,
               data: 'MECARD:N:${widget.website};TEL:${widget.phone};',
               version: QrVersions.auto,
-              size: 80.0,
+              size: 200.0,
             ),
           ],
         ),

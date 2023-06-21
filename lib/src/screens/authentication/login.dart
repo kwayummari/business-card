@@ -19,7 +19,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final loginService _apiService = loginService();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool marked = false;
@@ -44,7 +43,7 @@ class _LoginState extends State<Login> {
                 txt: 'WELCOME BACK',
                 size: 25,
                 weight: FontWeight.w400,
-                color: HexColor('#ffffff'),
+                color: AppConst.black,
               ),
               SizedBox(
                 height: 15,
@@ -53,7 +52,7 @@ class _LoginState extends State<Login> {
                 txt: 'Login into your account',
                 size: 15,
                 weight: FontWeight.w400,
-                color: HexColor('#ffffff'),
+                color: AppConst.black,
               ),
               SizedBox(
                 height: 30,
@@ -100,7 +99,7 @@ class _LoginState extends State<Login> {
                   AppText(
                     txt: 'Remember me',
                     size: 15,
-                    color: AppConst.white,
+                    color: AppConst.black,
                   ),
                   Spacer()
                 ],
@@ -122,7 +121,7 @@ class _LoginState extends State<Login> {
                         //     .login(context, email.text, password.text),
                         label: 'LOGIN',
                         borderRadius: 20,
-                        textColor: AppConst.white,
+                        textColor: AppConst.black,
                         bcolor: AppConst.primary,
                       ),
                     ),
@@ -163,7 +162,9 @@ class _LoginState extends State<Login> {
                       TextSpan(
                         text: 'Don\'t have an account? ',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, color: AppConst.white),
+                          fontWeight: FontWeight.bold,
+                          color: AppConst.black,
+                        ),
                       ),
                       TextSpan(
                         text: 'Sign up',

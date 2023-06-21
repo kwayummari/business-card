@@ -27,7 +27,7 @@ class AppBaseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppConst.black,
+      backgroundColor: AppConst.white,
       appBar: appBar,
       body: SingleChildScrollView(
         child: Container(
@@ -61,9 +61,11 @@ class AppBaseScreen extends StatelessWidget {
                 Container(
                   color: AppConst.black.withOpacity(0.85),
                 ),
-              if (isLoading == true) Center(child:  SpinKitCircle(
-                      color: AppConst.primary,
-                    )),
+              if (isLoading == true)
+                Center(
+                    child: SpinKitCircle(
+                  color: AppConst.primary,
+                )),
               if (isvisible == true)
                 Positioned(
                   top: 0,

@@ -41,7 +41,7 @@ class _dashboardState extends State<dashboard> {
           title: AppText(
             txt: 'Business Card Generation',
             size: 15,
-            color: AppConst.white,
+            color: AppConst.black,
           ),
         ),
         isvisible: false,
@@ -56,7 +56,7 @@ class _dashboardState extends State<dashboard> {
               txt:
                   'Congratulations on taking the first step to creating your professional business card! In order to generate your card, we need your information. Don\'t worry, it\'s quick and easy. Simply fill in the fields below with your name, job title, company name, phone number, and email address. This information will help you to make a great first impression and showcase your skills and expertise. Don\'t miss out on this opportunity to create your personalized business card. Fill in your details now and let\'s get started',
               size: 15,
-              color: AppConst.white,
+              color: AppConst.black,
               weight: FontWeight.bold,
             ),
             AppInputText(
@@ -80,7 +80,7 @@ class _dashboardState extends State<dashboard> {
                 fillcolor: AppConst.primary,
                 label: 'Company Name',
                 obscure: false),
-                AppInputText(
+            AppInputText(
                 textfieldcontroller: work,
                 ispassword: false,
                 isemail: false,
@@ -136,7 +136,7 @@ class _dashboardState extends State<dashboard> {
                       //     .Business(context, email.text, name.text),
                       label: 'Submit to generate card',
                       borderRadius: 20,
-                      textColor: AppConst.white,
+                      textColor: AppConst.black,
                       bcolor: AppConst.primary,
                     ),
                   ),
