@@ -116,8 +116,9 @@ class _LoginState extends State<Login> {
                       height: 55,
                       child: AppButton(
                         onPress: () =>
-                        loginService()
-                            .login(context, email.text, password.text),
+                            Navigator.pushNamed(context, RouteNames.dashboard),
+                        // loginService()
+                        //     .login(context, email.text, password.text),
                         label: 'LOGIN',
                         borderRadius: 20,
                         textColor: AppConst.black,
