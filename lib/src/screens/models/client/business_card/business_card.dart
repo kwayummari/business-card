@@ -20,16 +20,16 @@ class MyImagePage extends StatefulWidget {
   var email;
   var website;
   var work;
-  MyImagePage(
-      {Key? key,
-      required this.name,
-      required this.job,
-      required this.company,
-      required this.phone,
-      required this.email,
-      required this.work,
-      required this.website})
-      : super(key: key);
+  MyImagePage({
+    Key? key,
+    required this.name,
+    required this.job,
+    required this.company,
+    required this.phone,
+    required this.email,
+    required this.work,
+    required this.website,
+  }) : super(key: key);
 
   @override
   _MyImagePageState createState() => _MyImagePageState();
@@ -49,6 +49,7 @@ class _MyImagePageState extends State<MyImagePage> {
     } catch (e) {
       print(e);
     }
+    return null;
   }
 
   Future<void> _shareImage() async {
@@ -60,26 +61,40 @@ class _MyImagePageState extends State<MyImagePage> {
       await file.writeAsBytes(imageBytes);
       await Share.shareFiles([file.path], text: 'Check out my business card!');
     } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Error sharing image')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error sharing image')),
+      );
     }
   }
 
   Future<void> _shareQr() async {
-  Uint8List? imageBytes = await _captureImage();
-  if (imageBytes != null) {
-    String imageName = '${widget.name} QR Code.png';
-    final tempDir = await getTemporaryDirectory();
-    final file = await new File('${tempDir.path}/$imageName').create();
-    await file.writeAsBytes(imageBytes);
-    await Share.shareFiles([file.path], text: 'Check out my QR code!');
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Error sharing QR code'),
-    ));
+    Uint8List? qrCodeBytes = await _captureImageFromKey(globalKey);
+    if (qrCodeBytes != null) {
+      String imageName = '${widget.name} QR Code.png';
+      final tempDir = await getTemporaryDirectory();
+      final file = await new File('${tempDir.path}/$imageName').create();
+      await file.writeAsBytes(qrCodeBytes);
+      await Share.shareFiles([file.path], text: 'Check out my QR code!');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error sharing QR code')),
+      );
+    }
   }
-}
 
+  Future<Uint8List?> _captureImageFromKey(GlobalKey key) async {
+    try {
+      RenderRepaintBoundary boundary =
+          key.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      var image = await boundary.toImage(pixelRatio: 3.0);
+      var byteData = await image.toByteData(format: ImageByteFormat.png);
+      var pngBytes = byteData!.buffer.asUint8List();
+      return pngBytes;
+    } catch (e) {
+      print(e);
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +140,10 @@ class _MyImagePageState extends State<MyImagePage> {
                         decoration: BoxDecoration(
                           color: AppConst.primary,
                           borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(26),
-                              bottomLeft: Radius.circular(126),
-                              bottomRight: Radius.circular(0)),
+                            topLeft: Radius.circular(26),
+                            bottomLeft: Radius.circular(126),
+                            bottomRight: Radius.circular(0),
+                          ),
                         ),
                       ),
                     ),
@@ -271,11 +287,12 @@ class _MyImagePageState extends State<MyImagePage> {
               height: 20,
             ),
             AppButton(
-                onPress: _shareQr,
-                label: 'Share Qr Code',
-                borderRadius: 5,
-                textColor: AppConst.black,
-                bcolor: AppConst.primary),
+              onPress: _shareQr,
+              label: 'Share QR Code',
+              borderRadius: 5,
+              textColor: AppConst.black,
+              bcolor: AppConst.primary,
+            ),
             QrImage(
               backgroundColor: AppConst.white,
               data: 'MECARD:N:${widget.website};TEL:${widget.phone};',
