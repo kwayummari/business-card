@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
-
 import 'package:business_card/src/utils/app_const.dart';
 import 'package:business_card/src/widgets/app_base_screen.dart';
 import 'package:business_card/src/widgets/app_button.dart';
