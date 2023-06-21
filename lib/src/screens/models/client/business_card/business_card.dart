@@ -66,33 +66,19 @@ class _MyImagePageState extends State<MyImagePage> {
     }
   }
 
-  Future<void> _shareQr() async {
-  Uint8List? imageBytes = await _captureImage();
-  if (imageBytes != null) {
-    String imageName = '${widget.name} QR Code.png';
-    final tempDir = await getTemporaryDirectory();
-    final file = await new File('${tempDir.path}/$imageName').create();
-    await file.writeAsBytes(imageBytes);
-    await Share.shareFiles([file.path], text: 'Check out my QR code!');
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Error sharing QR code')),
-    );
-  }
-}
+  void _shareQrCode() async {
+    final imageBytes = await QrPainter(
+      data: 'MECARD:N:${widget.website};TEL:${widget.phone};',
+      version: QrVersions.auto,
+    ).toImageData(200.0);
 
-  Future<Uint8List?> _captureImageFromKey(GlobalKey key) async {
-    try {
-      RenderRepaintBoundary boundary =
-          key.currentContext!.findRenderObject() as RenderRepaintBoundary;
-      var image = await boundary.toImage(pixelRatio: 3.0);
-      var byteData = await image.toByteData(format: ImageByteFormat.png);
-      var pngBytes = byteData!.buffer.asUint8List();
-      return pngBytes;
-    } catch (e) {
-      print(e);
-    }
-    return null;
+    final tempDir = await getTemporaryDirectory();
+    final imagePath = '${tempDir.path}/qr_code.png';
+
+    final file = File(imagePath);
+    await file.writeAsBytes(imageBytes!.buffer.asUint8List());
+
+    Share.shareFiles([imagePath], text: 'Check out my QR code!');
   }
 
   @override
@@ -286,7 +272,7 @@ class _MyImagePageState extends State<MyImagePage> {
               height: 20,
             ),
             AppButton(
-              onPress: _shareQr,
+              onPress: () => _shareQrCode(),
               label: 'Share QR Code',
               borderRadius: 5,
               textColor: AppConst.black,
