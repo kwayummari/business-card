@@ -67,19 +67,19 @@ class _MyImagePageState extends State<MyImagePage> {
   }
 
   Future<void> _shareQr() async {
-    Uint8List? qrCodeBytes = await _captureImageFromKey(globalKey);
-    if (qrCodeBytes != null) {
-      String imageName = '${widget.name} QR Code.png';
-      final tempDir = await getTemporaryDirectory();
-      final file = await new File('${tempDir.path}/$imageName').create();
-      await file.writeAsBytes(qrCodeBytes);
-      await Share.shareFiles([file.path], text: 'Check out my QR code!');
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error sharing QR code')),
-      );
-    }
+  Uint8List? imageBytes = await _captureImage();
+  if (imageBytes != null) {
+    String imageName = '${widget.name} QR Code.png';
+    final tempDir = await getTemporaryDirectory();
+    final file = await new File('${tempDir.path}/$imageName').create();
+    await file.writeAsBytes(imageBytes);
+    await Share.shareFiles([file.path], text: 'Check out my QR code!');
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Error sharing QR code')),
+    );
   }
+}
 
   Future<Uint8List?> _captureImageFromKey(GlobalKey key) async {
     try {
