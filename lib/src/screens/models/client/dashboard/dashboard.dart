@@ -8,6 +8,7 @@ import 'package:business_card/src/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class dashboard extends StatefulWidget {
   const dashboard({Key? key}) : super(key: key);
@@ -43,6 +44,20 @@ class _dashboardState extends State<dashboard> {
             size: 15,
             color: AppConst.black,
           ),
+          actions: [
+            IconButton(
+                onPressed: () async {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  await prefs.clear();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RouteNames.login, (_) => false);
+                },
+                icon: Icon(
+                  Icons.logout,
+                  color: AppConst.white,
+                ))
+          ],
         ),
         isvisible: false,
         backgroundImage: false,

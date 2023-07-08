@@ -137,7 +137,7 @@ class _MyImagePageState extends State<MyImagePage> {
                       right: 10,
                       child: QrImage(
                         data:
-                            'MECARD:N:${widget.name};${widget.email};TEL:${widget.phone};',
+                            'MECARD:N:${widget.name};EMAIL:${widget.email};TEL:${widget.phone};',
                         version: QrVersions.auto,
                         size: 80.0,
                       ),
@@ -281,7 +281,8 @@ class _MyImagePageState extends State<MyImagePage> {
             ),
             QrImage(
               backgroundColor: AppConst.white,
-              data: 'MECARD:N:${widget.website};TEL:${widget.phone};',
+              data:
+                  'MECARD:N:${widget.name};EMAIL:${widget.email};TEL:${widget.phone};',
               version: QrVersions.auto,
               size: 200.0,
             ),
