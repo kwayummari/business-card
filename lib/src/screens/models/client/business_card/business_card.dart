@@ -68,7 +68,7 @@ class _MyImagePageState extends State<MyImagePage> {
 
   void _shareQrCode() async {
     final imageBytes = await QrPainter(
-      color: AppConst.primary,
+      color: AppConst.white,
       data: 'MECARD:N:${widget.website};TEL:${widget.phone};',
       version: QrVersions.auto,
       embeddedImageStyle: QrEmbeddedImageStyle(color: AppConst.primary),
