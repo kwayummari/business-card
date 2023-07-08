@@ -68,11 +68,10 @@ class _MyImagePageState extends State<MyImagePage> {
 
   void _shareQrCode() async {
     final imageBytes = await QrPainter(
+      color: AppConst.primary,
       data: 'MECARD:N:${widget.website};TEL:${widget.phone};',
       version: QrVersions.auto,
-      embeddedImageStyle: QrEmbeddedImageStyle(
-                          color: AppConst.primary
-                        ),
+      embeddedImageStyle: QrEmbeddedImageStyle(color: AppConst.primary),
     ).toImageData(200.0);
 
     final tempDir = await getTemporaryDirectory();
@@ -283,7 +282,6 @@ class _MyImagePageState extends State<MyImagePage> {
               bcolor: AppConst.primary,
             ),
             QrImage(
-              
               data:
                   'MECARD:N:${widget.name};EMAIL:${widget.email};TEL:${widget.phone};',
               version: QrVersions.auto,
