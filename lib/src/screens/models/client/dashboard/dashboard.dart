@@ -42,7 +42,7 @@ class _dashboardState extends State<dashboard> {
           title: AppText(
             txt: 'Business Card Generation',
             size: 15,
-            color: AppConst.black,
+            color: AppConst.white,
           ),
           actions: [
             IconButton(
@@ -151,7 +151,7 @@ class _dashboardState extends State<dashboard> {
                       //     .Business(context, email.text, name.text),
                       label: 'Submit to generate card',
                       borderRadius: 20,
-                      textColor: AppConst.black,
+                      textColor: AppConst.white,
                       bcolor: AppConst.primary,
                     ),
                   ),
