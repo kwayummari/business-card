@@ -76,7 +76,7 @@ class _MyImagePageState extends State<MyImagePage> {
     ).toImageData(200.0);
 
     final tempDir = await getTemporaryDirectory();
-    final imagePath = '${tempDir.path}/qr_code.png';
+    final imagePath = '${tempDir.path}/qr_code.jpg';
 
     final file = File(imagePath);
     await file.writeAsBytes(imageBytes!.buffer.asUint8List());
