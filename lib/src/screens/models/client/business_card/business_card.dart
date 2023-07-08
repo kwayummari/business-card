@@ -136,6 +136,7 @@ class _MyImagePageState extends State<MyImagePage> {
                       top: 10,
                       right: 10,
                       child: QrImage(
+                        backgroundColor: AppConst.white,
                         data:
                             'MECARD:N:${widget.name};EMAIL:${widget.email};TEL:${widget.phone};',
                         version: QrVersions.auto,
