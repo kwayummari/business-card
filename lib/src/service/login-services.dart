@@ -26,6 +26,10 @@ class loginService {
           .updateLoging(!myProvider.myLoging);
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('email', email);
+        AppSnackbar(
+        isError: false,
+        response: 'Success',
+      ).show(context);
         Navigator.pushNamedAndRemoveUntil(
             context, RouteNames.dashboard, (_) => false);
     } else {
