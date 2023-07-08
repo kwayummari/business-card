@@ -136,11 +136,6 @@ class _MyImagePageState extends State<MyImagePage> {
                       top: 10,
                       right: 10,
                       child: QrImage(
-                        embeddedImageStyle: QrEmbeddedImageStyle(
-                          color: AppConst.primary
-                        ),
-                        foregroundColor: AppConst.primary,
-                        backgroundColor: AppConst.white,
                         data:
                             'MECARD:N:${widget.name};EMAIL:${widget.email};TEL:${widget.phone};',
                         version: QrVersions.auto,
@@ -285,7 +280,11 @@ class _MyImagePageState extends State<MyImagePage> {
               bcolor: AppConst.primary,
             ),
             QrImage(
-              backgroundColor: AppConst.white,
+              embeddedImageStyle: QrEmbeddedImageStyle(
+                          color: AppConst.primary
+                        ),
+                        foregroundColor: AppConst.primary,
+                        backgroundColor: AppConst.white,
               data:
                   'MECARD:N:${widget.name};EMAIL:${widget.email};TEL:${widget.phone};',
               version: QrVersions.auto,
