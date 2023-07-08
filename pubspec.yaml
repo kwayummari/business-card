@@ -69,10 +69,9 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#FFA500"
-  image: assets/splash.png
+  image: assets/icon.png
   android: true
   ios: true
-  android_gravity: fill
   ios_content_mode: scaleAspectfill
 
   # The "flutter_lints" package below contains a set of recommended lints to
