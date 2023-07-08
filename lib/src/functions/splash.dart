@@ -10,18 +10,18 @@ class SplashFunction {
 
     await Future.delayed(Duration(seconds: 1), () {});
 
-      if (email == null) {
-        Navigator.pushNamed(context, RouteNames.login);
-      } else if (email.toString() != null) {
-        Navigator.pushNamed(context, RouteNames.dashboard);
-      }
+    if (email == null) {
+      Navigator.pushNamed(context, RouteNames.login);
+    } else if (email.toString() != null) {
+      Navigator.pushNamed(context, RouteNames.dashboard);
+    }
   }
 
   Future<void> getValidationData() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
     var e = sharedPreferences.getString('email');
-    email = email;
+    email = e;
   }
 
   Future<String> getEmail() async {
