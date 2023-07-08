@@ -20,6 +20,7 @@ class Api {
   // Throw an error if the response is not successful
   void _handleError(http.Response response) {
     if (response.statusCode != 200) {
+      print(response.statusCode);
       throw Exception("Failed to fetch data");
     }
   }
@@ -58,6 +59,7 @@ class Api {
           )
           .timeout(Duration(seconds: 10));
       _handleError(response);
+      print(response.statusCode);
       return json.decode(response.body);
     } catch (e) {
       AppSnackbar(
