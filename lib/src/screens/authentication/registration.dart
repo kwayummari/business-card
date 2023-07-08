@@ -28,7 +28,7 @@ class _RegistrationState extends State<Registration> {
   @override
   Widget build(BuildContext context) {
     return AppBaseScreen(
-      padding: const EdgeInsets.all(0),
+      bgcolor: AppConst.black,
       isvisible: false,
       backgroundImage: false,
       backgroundAuth: false,
@@ -37,21 +37,15 @@ class _RegistrationState extends State<Registration> {
           child: Column(
             children: [
               SizedBox(
-                height: 80,
+                height: 100,
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: AppText(
-                    txt: 'Create your \n Account',
-                    size: 30,
-                    weight: FontWeight.w900,
-                    color: AppConst.white,
-                  ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: AppText(
+                  txt: 'Create your Account',
+                  size: 30,
+                  weight: FontWeight.w900,
+                  color: AppConst.white,
                 ),
               ),
               SizedBox(

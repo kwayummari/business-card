@@ -10,6 +10,7 @@ class AppBaseScreen extends StatelessWidget {
   final bool backgroundAuth;
   final AppBar? appBar;
   final bool? isvisible;
+  final Color? bgcolor;
   final EdgeInsetsGeometry? padding;
 
   const AppBaseScreen(
@@ -21,13 +22,14 @@ class AppBaseScreen extends StatelessWidget {
       required this.backgroundAuth,
       this.appBar,
       this.padding,
+      this.bgcolor,
       this.floatingAction})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppConst.white,
+      backgroundColor: bgcolor ?? AppConst.white,
       appBar: appBar,
       body: SingleChildScrollView(
         child: Container(
